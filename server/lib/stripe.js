@@ -5,7 +5,15 @@
 
 var thunkify = require('thunkify-wrap');
 var request = require('request');
+var ini = require('ini');
+var fs = require('fs');
 var Stripe = {};
+
+/**
+ * Const.
+ */
+
+const config = ini.parse(fs.readFileSync('./config.ini', 'utf-8'));
 
 /**
  * Expose `Stripe`.
@@ -22,11 +30,10 @@ Stripe.auth = function *(code) {
   var uri = 'https://connect.stripe.com/oauth/token';
   var load = {
     grant_type: 'authorization_code',
-    client_id: 'ca_5xs5jQYK3Jm0RokxGd33Z2LD9Xh79xOF',
+    client_id: config.STRIPE_DEV_CLIENT_ID,
     code: code,
-    client_secret: 'sk_test_xD7F3URRZeSyQahOmvJ1zqZ0' // test secret
+    client_secret: config.STRIPE_TEST_SECRET_KEY
   };
-
   var res = yield post(uri, { form: load });
   var tokens = JSON.parse(res[0].body);
   return tokens;
