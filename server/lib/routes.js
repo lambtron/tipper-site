@@ -13,3 +13,12 @@ var User = require('./user');
 exports.index = function *() {
   return this.body = yield render('index');
 };
+
+/**
+ * Register.
+ */
+
+exports.register = function *() {
+  var load = this.request.body;
+  return this.body = yield User.create(load.user);
+};
