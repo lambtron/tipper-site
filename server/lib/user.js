@@ -19,14 +19,16 @@ module.exports = User;
  * - twitter handle
  * - stripe accessToken
  * - stripe requestToken
+ * - stripe id
  * - paid
  * - received
  * - createdAt
  */
 
-User.create = function *(user) {
-  var exists = yield this.findOne({ name: user.name });
-  if (!exists) return yield this.insert(newUser(user));
+User.create = function *(twitter, tokens) {
+  var exists = yield this.findOne({ twitter: twitter });
+  var user = newUser(twitter, tokens);
+  if (!exists) return yield this.insert(user);
   return yield this.updateById(exists._id, merge(user, exists));
 };
 
@@ -34,11 +36,12 @@ User.create = function *(user) {
  * New user
  */
 
-function newUser(user) {
+function newUser(twitter, tokens) {
   return {
-    twitter: user.twitter,
-    stripeAccessToken: user.stripeAccessToken,
-    stripeRequestToken: user.stripeRequestToken,
+    twitter: twitter,
+    stripeAccessToken: tokens.access_token,
+    stripeRequestToken: tokens.refresh_token,
+    stripeId: tokens.stripe_user_id,
     paid: 0,
     received: 0,
     createdAt: Date()
@@ -51,9 +54,10 @@ function newUser(user) {
 
 function merge(user, exists) {
   return {
-    twitter: user.twitter || exists.twitter,
+    twitter: exists.twitter,
     stripeAccessToken: user.stripeAccessToken || exists.stripeAccessToken,
     stripeRequestToken: user.stripeRequestToken || exists.stripeRequestToken,
+    stripeId: user.stripeId || exists.stripeId,
     paid: exists.paid,
     received: exists.received,
     createdAt: exists.createdAt
