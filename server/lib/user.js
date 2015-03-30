@@ -27,7 +27,7 @@ module.exports = User;
 User.create = function *(user) {
   var exists = yield this.findOne({ name: user.name });
   if (!exists) return yield this.insert(newUser(user));
-  return yield this.updateById(exists._id, exists);
+  return yield this.updateById(exists._id, merge(user, exists));
 };
 
 /**
