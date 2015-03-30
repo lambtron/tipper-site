@@ -27,5 +27,3 @@ exports.register = function *() {
   if (tokens.error) return this.body = tokens.error_description;
   return this.body = yield User.create(twitter, tokens);
 };
-
-// https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_5xs5jQYK3Jm0RokxGd33Z2LD9Xh79xOF&scope=read_write
