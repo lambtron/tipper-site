@@ -1,0 +1,32 @@
+{
+  "name": "meerkash",
+  "description": "Pay $ with a tweet.",
+  "version": "0.0.1",
+  "author": "Andy Jiang",
+  "main": "server/server",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lambtron/meerkash"
+  },
+  "engines": {
+    "node": "^0.12.x",
+    "npm": "^2.1.x"
+  },
+  "private": true,
+  "dependencies": {
+    "co-monk": "^1.0.0",
+    "co-views": "^0.2.0",
+    "deku": "0.0.28",
+    "koa": "^0.13.0",
+    "koa-bodyparser": "^1.4.1",
+    "koa-route": "^2.2.0",
+    "koa-static": "^1.4.9",
+    "monk": "^1.0.0",
+    "superagent": "^1.1.0",
+    "swig": "^1.4.2",
+    "thunkify-wrap": "^1.0.4"
+  },
+  "devDependencies": {
+    "babelify": "^5.0.4"
+  }
+}
