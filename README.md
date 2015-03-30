@@ -1,2 +1,4 @@
-# meerkash
-Pay $ with a tweet.
+# Meerkash
+
+> Pay $ with a tweet.
+
