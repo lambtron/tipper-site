@@ -36,7 +36,6 @@ App.prototype.render = function(props, state) {
 
   // Redirect to stripe oauth.
   function auth() {
-    console.log(twitter);
     if (twitter.length === 0) return;
     window.location = stripe + twitter;
   }
