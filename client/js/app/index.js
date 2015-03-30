@@ -5,8 +5,8 @@
  */
 
 import {component,dom} from '../lib/deku/index.js';
-import Button from '../button/index.js'
-import Input from '../input/index.js'
+import Button from '../button/index.js';
+import Input from '../input/index.js';
 
 /**
  * Define `App`.
@@ -27,7 +27,9 @@ export default App;
 App.prototype.render = function(props, state) {
   var self = this;
   var twitter = '';
-  var stripe = 'https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_5xs5jQYK3Jm0RokxGd33Z2LD9Xh79xOF&scope=read_write&state=';
+  var clientId = 'ca_5xs5jQYK3Jm0RokxGd33Z2LD9Xh79xOF';
+  var stripe = 'https://connect.stripe.com/oauth/authorize?response_type=code';
+  stripe += '&client_id=' + clientId + '&scope=read_write&state=';
 
   // Get twitter.
   function value(value, name) {
