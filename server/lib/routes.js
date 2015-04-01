@@ -3,9 +3,11 @@
  * Module dependencies.
  */
 
+var twitter = require('./twitter');
 var render = require('./render');
-var User = require('./user');
 var Stripe = require('./stripe');
+var Venmo = require('./venmo');
+var User = require('./user');
 
 /**
  * Render index html page.
@@ -21,9 +23,11 @@ exports.index = function *() {
 
 exports.register = function *() {
   var qs = this.request.query;
-  var twitter = qs.state;
-  if (qs.error) return this.body = qs.error_description;
-  var tokens = yield Stripe.auth(qs.code);
-  if (tokens.error) return this.body = tokens.error_description;
-  return this.body = yield User.create(twitter, tokens);
+  var username = qs.state;
+  var twitterId = yield twitter.getId(username);
+  var venmo = yield Venmo.auth(qs.access_token);
+  console.log(venmo);
+  if (venmo.error) return this.body = venmo.error.message;
+  // return this.body = yield User.create(twitterId, tokens);
+  return this.body = '';
 };
