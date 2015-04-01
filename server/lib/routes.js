@@ -5,7 +5,6 @@
 
 var twitter = require('./twitter');
 var render = require('./render');
-var Stripe = require('./stripe');
 var Venmo = require('./venmo');
 var User = require('./user');
 
