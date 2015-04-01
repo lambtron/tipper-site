@@ -16,18 +16,19 @@ module.exports = User;
 /**
  * Upsert user.
  *
- * - twitter handle
- * - stripe accessToken
- * - stripe requestToken
- * - stripe id
+ * - twitterId
+ * - accessToken
+ * - requestToken
+ * - phone
+ * - email
  * - paid
  * - received
  * - createdAt
  */
 
-User.create = function *(twitter, tokens) {
-  var exists = yield this.findOne({ twitter: twitter });
-  var user = newUser(twitter, tokens);
+User.create = function *(twitterId, details) {
+  var exists = yield this.findOne({ twitter: twitterId });
+  var user = newUser(twitterId, details);
   if (!exists) return yield this.insert(user);
   return yield this.updateById(exists._id, merge(user, exists));
 };
@@ -36,12 +37,13 @@ User.create = function *(twitter, tokens) {
  * New user
  */
 
-function newUser(twitter, tokens) {
+function newUser(twitterId, details) {
   return {
-    twitter: twitter,
-    stripeAccessToken: tokens.access_token,
-    stripeRequestToken: tokens.refresh_token,
-    stripeId: tokens.stripe_user_id,
+    twitterId: twitterId,
+    accessToken: details.access_token,
+    requestToken: details.refresh_token,
+    phone: details.phone,
+    email: details.email,
     paid: 0,
     received: 0,
     createdAt: Date()
@@ -54,10 +56,11 @@ function newUser(twitter, tokens) {
 
 function merge(user, exists) {
   return {
-    twitter: exists.twitter,
-    stripeAccessToken: user.stripeAccessToken || exists.stripeAccessToken,
-    stripeRequestToken: user.stripeRequestToken || exists.stripeRequestToken,
-    stripeId: user.stripeId || exists.stripeId,
+    twitterId: exists.twitterId,
+    accessToken: user.accessToken || exists.accessToken,
+    requestToken: user.requestToken || exists.requestToken,
+    phone: user.phone || exists.email,
+    email: user.email || exists.email,
     paid: exists.paid,
     received: exists.received,
     createdAt: exists.createdAt
