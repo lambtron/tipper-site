@@ -26,7 +26,6 @@ exports.register = function *() {
   var twitterId = yield twitter.getId(username);
   var venmo = yield Venmo.auth(qs.access_token);
   console.log(venmo);
-  if (venmo.error) return this.body = venmo.error.message;
-  // return this.body = yield User.create(twitterId, tokens);
-  return this.body = '';
+  if (venmo.error) return this.body = venmo.error;
+  return this.body = yield User.create(twitterId, venmo);
 };
