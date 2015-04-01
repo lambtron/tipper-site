@@ -34,7 +34,7 @@ app.use(parser());
 
 var routes = require('./lib/routes.js');
 app.use(route.get('/', routes.index));
-app.use(route.get('/oauth/stripe', routes.register));
+app.use(route.get('/register', routes.register));
 
 /**
  * Listen on PORT.
