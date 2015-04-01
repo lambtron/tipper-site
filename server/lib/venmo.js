@@ -33,7 +33,6 @@ module.exports = Venmo;
 
 Venmo.auth = function *(code) {
   load.code = code;
-  console.log(load);
   var res = yield post(uri, { form: load });
   var body = JSON.parse(res[0].body);
   return body;
