@@ -37,9 +37,11 @@ module.exports = App;
 App.prototype.render = function (props, state) {
   var self = this;
   var twitter = "";
-  var clientId = "ca_5xs5jQYK3Jm0RokxGd33Z2LD9Xh79xOF";
-  var stripe = "https://connect.stripe.com/oauth/authorize?response_type=code";
-  stripe += "&client_id=" + clientId + "&scope=read_write&state=";
+  var clientId = "2499";
+  var venmo = "https://api.venmo.com/v1/oauth/authorize";
+  venmo += "?client_id=" + clientId;
+  venmo += "&scope=make_payments%20access_profile%20access_email%20access_phone";
+  venmo += "&state=";
 
   // Get twitter.
   function value(value, name) {
@@ -50,7 +52,7 @@ App.prototype.render = function (props, state) {
   function auth() {
     if (twitter.length === 0) {
       return;
-    }window.location = stripe + twitter;
+    }window.location = venmo + twitter;
   }
 
   return dom(
@@ -78,7 +80,11 @@ App.prototype.render = function (props, state) {
       dom(Input, { name: "twitter", placeholder: "your_twitter", onValid: value }),
       dom("br", null),
       dom("br", null),
-      dom("img", { src: "../../img/stripe.png", style: "cursor: pointer", onClick: auth })
+      dom(
+        "div",
+        { style: "cursor: pointer", onClick: auth },
+        "HELLO HELLO"
+      )
     )
   );
 };
