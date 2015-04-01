@@ -38,3 +38,10 @@ Stripe.auth = function *(code) {
   var tokens = JSON.parse(res[0].body);
   return tokens;
 };
+
+/**
+ * Format response.
+ */
+
+function fmt() {
+}
