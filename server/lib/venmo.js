@@ -35,5 +35,19 @@ Venmo.auth = function *(code) {
   load.code = code;
   var res = yield post(uri, { form: load });
   var body = JSON.parse(res[0].body);
-  return body;
+  if (body.error) return body;
+  return fmt(body);
 };
+
+/**
+ * Format response.
+ */
+
+function fmt(venmo) {
+  return {
+    accessToken: venmo.access_token,
+    refreshToken: venmo.refresh_token,
+    phone: venmo.user.phone,
+    email: venmo.user.email
+  }
+}
