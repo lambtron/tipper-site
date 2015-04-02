@@ -36,6 +36,14 @@ server: node_modules
 build: node_modules
 	browserify client/js/index.js -t babelify --outfile client/bundle.js
 
+# Set env vars.
+set:
+	@node --harmony ./env
+
+# Remove env vars.
+unset:
+	rm config.ini
+
 #
 # Targets.
 #
