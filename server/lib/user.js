@@ -16,6 +16,7 @@ module.exports = User;
 /**
  * Upsert user.
  *
+ * - twitter
  * - twitterId
  * - accessToken
  * - requestToken
@@ -27,7 +28,7 @@ module.exports = User;
  */
 
 User.create = function *(twitterId, details) {
-  var exists = yield this.findOne({ twitter: twitterId });
+  var exists = yield this.findOne({ twitterId: twitterId });
   var user = newUser(twitterId, details);
   if (!exists) return yield this.insert(user);
   return yield this.updateById(exists._id, merge(user, exists));
@@ -39,6 +40,7 @@ User.create = function *(twitterId, details) {
 
 function newUser(twitterId, details) {
   return {
+    twitter: details.twitter,
     twitterId: twitterId,
     accessToken: details.access_token,
     requestToken: details.refresh_token,
@@ -56,6 +58,7 @@ function newUser(twitterId, details) {
 
 function merge(user, exists) {
   return {
+    twitter: exists.twitter,
     twitterId: exists.twitterId,
     accessToken: user.accessToken || exists.accessToken,
     requestToken: user.requestToken || exists.requestToken,
