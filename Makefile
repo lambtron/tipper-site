@@ -40,10 +40,6 @@ build: node_modules
 set:
 	@node --harmony ./env
 
-# Remove env vars.
-unset:
-	rm config.ini
-
 #
 # Targets.
 #
