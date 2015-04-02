@@ -6,7 +6,7 @@
   "main": "server/server",
   "scripts": {
     "start": "make run",
-    "postinstall": "make set && make build"
+    "postinstall": "make set"
   },
   "repository": {
     "type": "git",
