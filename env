@@ -43,7 +43,7 @@ function run() {
 function env() {
   var e;
   try {
-    e = fs.readFileSync('.asdf', { encoding: 'utf-8' }).split('\n');
+    e = fs.readFileSync('.env', { encoding: 'utf-8' }).split('\n');
   } catch (b) {
     return;
   }
