@@ -4,6 +4,10 @@
   "version": "0.0.1",
   "author": "Andy Jiang",
   "main": "server/server",
+  "scripts": {
+    "start": "make run",
+    "postinstall": "make set && make build"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/lambtron/meerkash"
