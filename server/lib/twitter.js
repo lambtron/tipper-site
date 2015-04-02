@@ -42,8 +42,6 @@ module.exports = twitter;
  */
 
 twitter.getId = function *(username) {
-  console.log(username);
   var res = yield get('users/show', { screen_name: username, include_entities: false });
-  console.log(res);
   return res[0].id;
 };
