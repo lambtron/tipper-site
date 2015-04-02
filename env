@@ -1,0 +1,59 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+var debug = require('debug')('set');
+var fs = require('fs');
+
+/**
+ * Const keys we are looking to set.
+ */
+
+const keys = [
+  'VENMO_CLIENT_ID',
+  'VENMO_CLIENT_SECRET',
+  'TW_CONSUMER_KEY',
+  'TW_CONSUMER_SEC',
+  'TW_ACCESS_TOKEN_KEY',
+  'TW_ACCESS_TOKEN_SEC'
+];
+
+/**
+ * Run.
+ */
+
+run();
+
+/**
+ * Define `run`.
+ */
+
+function run() {
+  if (!check()) set();
+}
+
+/**
+ * Check to see if exists.
+ */
+
+function check() {
+  try {
+    return fs.readFileSync('./config.ini', { encoding: 'utf-8' });
+  } catch (e) {
+    return false;
+  }
+}
+
+/**
+ * Set keys from `process.env`.
+ */
+
+function set() {
+  for (var i = 0; i < keys.length; i++) {
+    var line = keys[i] + ' = ' + process.env[keys[i]] + '\n';
+    debug('added %s to config.ini', line);
+    fs.appendFileSync('config.ini', line);
+  }
+}
