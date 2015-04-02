@@ -41,8 +41,12 @@ function run() {
  */
 
 function env() {
-  var e = fs.readFileSync('.env', { encoding: 'utf-8' }).split('\n');
-  if (!e) return;
+  var e;
+  try {
+    e = fs.readFileSync('.asdf', { encoding: 'utf-8' }).split('\n');
+  } catch (b) {
+    return;
+  }
   for (var i = 0; i < e.length; i++) {
     process.env[e[i].split('=')[0].trim()] = e[i].split('=')[1].trim();
   }
