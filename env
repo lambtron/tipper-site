@@ -31,19 +31,8 @@ run();
  */
 
 function run() {
-  if (!check()) set();
-}
-
-/**
- * Check to see if exists.
- */
-
-function check() {
-  try {
-    return fs.readFileSync('./config.ini', { encoding: 'utf-8' });
-  } catch (e) {
-    return false;
-  }
+  fs.writeFileSync('config.ini', '');
+  set();
 }
 
 /**
