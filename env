@@ -32,14 +32,26 @@ run();
 
 function run() {
   fs.writeFileSync('config.ini', '');
-  set();
+  env();
+  config();
+}
+
+/**
+ * Set process.env from .env
+ */
+
+function env() {
+  var e = fs.readFileSync('.env', { encoding: 'utf-8' }).split('\n');
+  for (var i = 0; i < e.length; i++) {
+    process.env[e[i].split('=')[0].trim()] = e[i].split('=')[1].trim();
+  }
 }
 
 /**
  * Set keys from `process.env`.
  */
 
-function set() {
+function config() {
   for (var i = 0; i < keys.length; i++) {
     var line = keys[i] + ' = ' + process.env[keys[i]] + '\n';
     debug('added %s to config.ini', line);
