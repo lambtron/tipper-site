@@ -42,6 +42,7 @@ function run() {
 
 function env() {
   var e = fs.readFileSync('.env', { encoding: 'utf-8' }).split('\n');
+  if (!e) return;
   for (var i = 0; i < e.length; i++) {
     process.env[e[i].split('=')[0].trim()] = e[i].split('=')[1].trim();
   }
