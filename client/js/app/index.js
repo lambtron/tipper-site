@@ -31,6 +31,7 @@ App.prototype.render = function(props, state) {
   var venmo = 'https://api.venmo.com/v1/oauth/authorize';
   venmo += '?client_id=' + clientId;
   venmo += '&scope=make_payments%20access_profile%20access_email%20access_phone';
+  venmo += '&response_type=code';
   venmo += '&state=';
 
   // Get twitter.
@@ -76,9 +77,9 @@ App.prototype.render = function(props, state) {
       </div>
       <br />
       <div style='width: 190px; margin: 0 auto'>
-        <Input name='twitter' placeholder='your twitter handle' onValid={value} />
+        <Input name='twitter' placeholder='your twitter handle (required)' onValid={value} />
         <br /><br />
-        <div class='btn btn-primary' style='cursor: pointer' onClick={auth}>
+        <div class='btn btn-primary' style='cursor: pointer' onClick={auth} >
           Authenticate your Venmo
         </div>
       </div>
