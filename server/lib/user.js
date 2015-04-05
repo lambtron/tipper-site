@@ -42,8 +42,8 @@ function newUser(twitterId, details) {
   return {
     twitter: details.twitter,
     twitterId: twitterId,
-    accessToken: details.access_token,
-    requestToken: details.refresh_token,
+    accessToken: details.accessToken,
+    requestToken: details.refreshToken,
     phone: details.phone,
     email: details.email,
     paid: 0,
