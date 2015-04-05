@@ -50,7 +50,7 @@ Input.prototype.render = function(props, state) {
       onChange={onChange}
       onInput={onInput}
       class='borderless'
-      style='width: 100%' />
+      style='width: 100%; text-align: center' />
   );
 };
 
