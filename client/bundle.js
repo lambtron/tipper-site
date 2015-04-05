@@ -41,6 +41,7 @@ App.prototype.render = function (props, state) {
   var venmo = "https://api.venmo.com/v1/oauth/authorize";
   venmo += "?client_id=" + clientId;
   venmo += "&scope=make_payments%20access_profile%20access_email%20access_phone";
+  venmo += "&response_type=code";
   venmo += "&state=";
 
   // Get twitter.
@@ -80,7 +81,7 @@ App.prototype.render = function (props, state) {
         dom(
           "li",
           { style: "margin-bottom: 10px" },
-          "Authenticate your Venmo account with your Twitter username"
+          "Authenticate your Venmo account with your Twitter username."
         ),
         dom(
           "li",
@@ -108,7 +109,7 @@ App.prototype.render = function (props, state) {
         dom(
           "li",
           { style: "margin-bottom: 10px" },
-          "If the above conditions are met, we'll pay the $ to the recipient's venmo account from yours. If recipient has not authed her venmo with us, the payment will not be processed."
+          "If the above conditions are met, we'll take the $ from your Venmo account and send it to the recipient's Venmo account. If recipient has not authed her Venmo with us, the payment will not be processed."
         ),
         dom(
           "li",
@@ -145,7 +146,7 @@ App.prototype.render = function (props, state) {
     dom(
       "div",
       { style: "width: 190px; margin: 0 auto" },
-      dom(Input, { name: "twitter", placeholder: "your twitter handle", onValid: value }),
+      dom(Input, { name: "twitter", placeholder: "your twitter handle (required)", onValid: value }),
       dom("br", null),
       dom("br", null),
       dom(
