@@ -57,34 +57,109 @@ App.prototype.render = function (props, state) {
 
   return dom(
     "div",
-    { "class": "container", style: "width: 500px" },
+    { "class": "container", style: "width: 320px" },
+    dom("img", { src: "http://i.imgur.com/59wAbva.gif", "class": "center-block", style: "width: 40px; margin: 0 auto; margin-top: 50px" }),
     dom(
       "div",
-      { style: "text-align: center; font-size: 2em; margin-top: 100px" },
-      "Meerkash"
+      { style: "text-align: center; font-size: 2em; margin-top: 30px" },
+      "Tipper"
+    ),
+    dom("br", null),
+    dom(
+      "blockquote",
+      null,
+      "Pay or receive a small amount with just a tweet."
     ),
     dom("br", null),
     dom(
       "div",
       null,
       dom(
-        "pre",
-        null,
-        "@andyjiang $20 for the turkey sandwich thanks"
+        "ol",
+        { style: "margin-left: -40px" },
+        dom(
+          "li",
+          { style: "margin-bottom: 10px" },
+          "Authenticate your Venmo account with your Twitter username"
+        ),
+        dom(
+          "li",
+          { style: "margin-bottom: 10px" },
+          "Tipper will listen for your tweets where you ",
+          dom(
+            "code",
+            null,
+            "@"
+          ),
+          " someone, have a ",
+          dom(
+            "code",
+            null,
+            "$"
+          ),
+          ", and the hashtag ",
+          dom(
+            "code",
+            null,
+            "#tipper"
+          ),
+          "."
+        ),
+        dom(
+          "li",
+          { style: "margin-bottom: 10px" },
+          "If the above conditions are met, we'll pay the $ to the recipient's venmo account from yours. If recipient has not authed her venmo with us, the payment will not be processed."
+        ),
+        dom(
+          "li",
+          { style: "margin-bottom: 10px" },
+          "Similarly, if there is a tweet at you with ",
+          dom(
+            "code",
+            null,
+            "#tipper"
+          ),
+          " and a ",
+          dom(
+            "code",
+            null,
+            "$"
+          ),
+          ", then your Venmo will get paid :)."
+        ),
+        dom(
+          "li",
+          { style: "margin-bottom: 10px" },
+          "Max payment is $20! If you mention multiple people on the tweet, they will all get paid the amount you specified."
+        )
       )
+    ),
+    dom("br", null),
+    dom("hr", null),
+    dom(
+      "div",
+      { style: "text-align: center; font-size: 1.6em; margin-top: 20px" },
+      "Get started"
     ),
     dom("br", null),
     dom(
       "div",
       { style: "width: 190px; margin: 0 auto" },
-      dom(Input, { name: "twitter", placeholder: "your_twitter", onValid: value }),
+      dom(Input, { name: "twitter", placeholder: "your twitter handle", onValid: value }),
       dom("br", null),
       dom("br", null),
       dom(
         "div",
-        { style: "cursor: pointer", onClick: auth },
-        "HELLO HELLO"
+        { "class": "btn btn-primary", style: "cursor: pointer", onClick: auth },
+        "Authenticate your Venmo"
       )
+    ),
+    dom("br", null),
+    dom("br", null),
+    dom(
+      "footer",
+      { style: "margin-top: 50px; font-size: 0.8em; color: #B3B3B3; text-align: center;" },
+      "2015 - Powered by Venmo, Twitter, and Beer"
     )
   );
 };
@@ -198,7 +273,7 @@ Input.prototype.render = function (props, state) {
     onChange: onChange,
     onInput: onInput,
     "class": "borderless",
-    style: "width: 100%" });
+    style: "width: 100%; text-align: center" });
 };
 
 /**
