@@ -45,22 +45,48 @@ App.prototype.render = function(props, state) {
   }
 
   return (
-    <div class='container' style='width: 500px'>
-      <div style='text-align: center; font-size: 2em; margin-top: 100px'>
-        Meerkash
+    <div class='container' style='width: 320px'>
+      <img src='http://i.imgur.com/59wAbva.gif' class='center-block' style='width: 40px; margin: 0 auto; margin-top: 50px' />
+      <div style='text-align: center; font-size: 2em; margin-top: 30px'>
+        Tipper
       </div>
       <br />
+      <blockquote>
+        Pay or receive a small amount with just a tweet.
+      </blockquote>
+      <br />
       <div>
-        <pre>@andyjiang $20 for the turkey sandwich thanks</pre>
+        <ol style='margin-left: -40px'>
+          <li style='margin-bottom: 10px'>Authenticate your Venmo account with your Twitter username</li>
+          <li style='margin-bottom: 10px'>Tipper will listen for your tweets where you <code>@</code> someone, have a <code>$</code>,
+          and the hashtag <code>#tipper</code>.</li>
+          <li style='margin-bottom: 10px'>If the above conditions are met, we'll pay the $
+          to the recipient's venmo account from yours. If recipient has not authed her venmo with us, the
+          payment will not be processed.</li>
+          <li style='margin-bottom: 10px'>Similarly, if there is a tweet at you with <code>#tipper</code> and a <code>$</code>,
+          then your Venmo will get paid :).</li>
+          <li style='margin-bottom: 10px'>Max payment is $20! If you mention multiple
+          people on the tweet, they will all get paid the amount you specified.</li>
+        </ol>
+      </div>
+      <br />
+      <hr />
+      <div style='text-align: center; font-size: 1.6em; margin-top: 20px'>
+        Get started
       </div>
       <br />
       <div style='width: 190px; margin: 0 auto'>
-        <Input name='twitter' placeholder='your_twitter' onValid={value} />
+        <Input name='twitter' placeholder='your twitter handle' onValid={value} />
         <br /><br />
-        <div style='cursor: pointer' onClick={auth}>
-          HELLO HELLO
+        <div class='btn btn-primary' style='cursor: pointer' onClick={auth}>
+          Authenticate your Venmo
         </div>
       </div>
+      <br />
+      <br />
+      <footer style='margin-top: 50px; font-size: 0.8em; color: #B3B3B3; text-align: center;'>
+        2015 - Powered by Venmo, Twitter, and Beer
+      </footer>
     </div>
   );
 };
