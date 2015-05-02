@@ -29,6 +29,6 @@ exports.register = function *() {
   if (venmo.error) return this.body = venmo.error;
   venmo.twitter = username;
   var user = yield User.create(twitterId, venmo);
-  analytics.track({ userId: user._id, event: 'Signed Up' });
+  analytics.track({ userId: user.twitterId, event: 'Signed Up' });
   return this.body = yield render('success', { user: user });
 };
