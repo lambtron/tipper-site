@@ -3,6 +3,7 @@
  * Module dependencies.
  */
 
+var analytics = require('./analytics');
 var twitter = require('./twitter');
 var render = require('./render');
 var Venmo = require('./venmo');
@@ -27,6 +28,7 @@ exports.register = function *() {
   var venmo = yield Venmo.auth(qs.code);
   if (venmo.error) return this.body = venmo.error;
   venmo.twitter = username;
-  yield User.create(twitterId, venmo);
-  return this.body = yield render('success');
+  var user = yield User.create(twitterId, venmo);
+  analytics.track({ userId: user._id, event: 'Signed Up' });
+  return this.body = yield render('success', { user: user });
 };
