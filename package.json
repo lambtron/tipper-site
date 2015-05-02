@@ -18,6 +18,7 @@
   },
   "private": true,
   "dependencies": {
+    "analytics-node": "^1.2.2",
     "co": "^4.5.1",
     "co-monk": "^1.0.0",
     "co-views": "^0.2.0",
