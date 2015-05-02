@@ -31,7 +31,8 @@ User.create = function *(twitterId, details) {
   var exists = yield this.findOne({ twitterId: twitterId });
   var user = newUser(twitterId, details);
   if (!exists) return yield this.insert(user);
-  return yield this.updateById(exists._id, merge(user, exists));
+  yield this.updateById(exists._id, merge(user, exists));
+  return yield this.findById(exists._id);
 };
 
 /**
