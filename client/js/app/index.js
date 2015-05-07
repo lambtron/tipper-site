@@ -46,46 +46,26 @@ App.prototype.render = function(props, state) {
   }
 
   return (
-    <div class='container' style='width: 320px'>
+    <div class='container' style='width: 460px'>
       <img src='http://i.imgur.com/59wAbva.gif' class='center-block' style='width: 40px; margin: 0 auto; margin-top: 50px' />
-      <div style='text-align: center; font-size: 2em; margin-top: 30px'>
-        Tipper
+      <div style='text-align: center; font-size: 4em; margin-top: 10px'>
+        #chipper
+      </div>
+      <div style='text-align: center; font-size: 2em; color: rgb(197, 197, 197)'>
+        Tweet Money Live.
       </div>
       <br />
-      <blockquote>
-        Pay or receive a small amount with just a tweet.
-      </blockquote>
-      <br />
-      <div>
-        <ol style='margin-left: -40px'>
-          <li style='margin-bottom: 10px'>Authenticate your Venmo account with your Twitter username.</li>
-          <li style='margin-bottom: 10px'>Tipper will listen for your tweets where you <code>@</code> someone, have a <code>$</code>,
-          and the hashtag <code>#tipper</code>.</li>
-          <li style='margin-bottom: 10px'>If the above conditions are met, we'll take the $ from your Venmo
-          account and send it to the recipient's Venmo account. If recipient has not authed her Venmo with us, the
-          payment will not be processed.</li>
-          <li style='margin-bottom: 10px'>Similarly, if there is a tweet at you with <code>#tipper</code> and a <code>$</code>,
-          then your Venmo will get paid :).</li>
-          <li style='margin-bottom: 10px'>Max payment is $20! If you mention multiple
-          people on the tweet, they will all get paid the amount you specified.</li>
-        </ol>
-      </div>
-      <br />
-      <hr />
-      <div style='text-align: center; font-size: 1.6em; margin-top: 20px'>
-        Get started
-      </div>
-      <br />
-      <div style='width: 190px; margin: 0 auto'>
-        <Input name='twitter' placeholder='your twitter handle (required)' onValid={value} />
-        <br /><br />
-        <div class='btn btn-primary' style='cursor: pointer' onClick={auth} >
+      <div style='width: 100%; margin: 0 auto'>
+        <div class="col-sm-6">
+          <Input name='twitter' placeholder='your twitter' onValid={value} />
+        </div>
+        <div class='btn btn-primary col-sm-6' style='cursor: pointer' onClick={auth} >
           Authenticate your Venmo
         </div>
       </div>
       <br />
       <br />
-      <footer style='margin-top: 50px; font-size: 0.8em; color: #B3B3B3; text-align: center;'>
+      <footer style='margin-top: 440px; font-size: 0.8em; color: #B3B3B3; text-align: center;'>
         2015 - Powered by Venmo, Twitter, and Beer
       </footer>
     </div>
