@@ -18,6 +18,14 @@ exports.index = function *() {
 };
 
 /**
+ * About page.
+ */
+
+exports.about = function *() {
+  return this.body = yield render('about');
+};
+
+/**
  * Register.
  */
 
