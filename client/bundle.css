@@ -1,13 +1,4 @@
 
-input, select {
-  background-color: transparent;
-  border: 0px;
-}
-
-textarea:focus, input:focus, select:focus {
-  outline: 0;
-}
-
 .pointer {
   cursor: pointer;
 }
