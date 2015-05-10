@@ -7,6 +7,7 @@ var analytics = require('./analytics');
 var twitter = require('./twitter');
 var render = require('./render');
 var Venmo = require('./venmo');
+var Tweet = require('./tweet');
 var User = require('./user');
 
 /**
@@ -23,6 +24,14 @@ exports.index = function *() {
 
 exports.about = function *() {
   return this.body = yield render('about');
+};
+
+/**
+ * Get recent tweets.
+ */
+
+exports.recent = function *() {
+  return this.body = yield Tweet.find({});
 };
 
 /**
