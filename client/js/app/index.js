@@ -7,6 +7,13 @@
 import {component,dom} from '../lib/deku/index.js';
 import Button from '../button/index.js';
 import Input from '../input/index.js';
+import List from '../list/index.js';
+
+/**
+ * Constants.
+ */
+
+const request = require('superagent');
 
 /**
  * Define `App`.
@@ -21,6 +28,25 @@ var App = component();
 export default App;
 
 /**
+ * After mount.
+ */
+
+App.prototype.afterMount = function(el, props, state) {
+  var setState = this.setState.bind(this);
+  var url = '/api/recent';
+
+  // Sort by date
+  function sortByDate(a, b) {
+    return a.createdAt > b.createdAt ? -1 : 1;
+  }
+
+  request.get(url).end(function(err, res) {
+    var list = res.body || [];
+    setState({ list: list.sort(sortByDate) });
+  });
+};
+
+/**
  * Render `App`.
  */
 
@@ -33,6 +59,7 @@ App.prototype.render = function(props, state) {
   venmo += '&scope=make_payments%20access_profile%20access_email%20access_phone';
   venmo += '&response_type=code';
   venmo += '&state=';
+  var list = state.list || [];
 
   // Get twitter.
   function value(value, name) {
@@ -59,13 +86,16 @@ App.prototype.render = function(props, state) {
         <div class="col-sm-6">
           <Input name='twitter' placeholder='your twitter' onValid={value} />
         </div>
-        <div class='btn btn-primary col-sm-6' style='cursor: pointer' onClick={auth} >
-          Authenticate your Venmo
+        <div class="col-sm-6">
+          <div class='btn btn-primary' style='cursor: pointer' onClick={auth} >
+            Authenticate your Venmo
+          </div>
         </div>
       </div>
       <br />
       <br />
-      <footer style='margin-top: 440px; font-size: 0.8em; color: #B3B3B3; text-align: center;'>
+      <List title='Recent transactions' list={list} />
+      <footer style='margin-top: 400px; font-size: 0.8em; color: #B3B3B3; text-align: center;'>
         2015 - Powered by Venmo, Twitter, and Beer
       </footer>
     </div>
