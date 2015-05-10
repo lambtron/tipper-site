@@ -36,6 +36,7 @@ var routes = require('./lib/routes.js');
 app.use(route.get('/', routes.index));
 app.use(route.get('/about', routes.about));
 app.use(route.get('/register', routes.register));
+app.use(route.get('/api/recent', routes.recent));
 
 /**
  * Listen on PORT.
